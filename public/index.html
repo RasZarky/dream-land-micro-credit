@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dreamland Micro Lending — Empowering Dreams</title>
+  <link rel="icon" href=" logo.png" type="image/x-icon">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    :root{
+      --green: #006B3F;
+      --gold:  #FECF2F;
+      --bg:    #071017;
+      --card:  rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --text-light: #E6F2EA;
+      --muted: #9FBDB0;
+      --max-width: 1200px;
+      --radius: 14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth;overflow-x:hidden;width:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #061219 0%, #07141a 100%);
+      color:var(--text-light);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:28px;}
+
+/* ---------- Header (sticky, minimal) ---------- */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1200;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,18,25,0.65), rgba(7,18,25,0.45));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: all 300ms ease;
+    }
+    .nav-inner{max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; gap:18px; padding:14px 22px; justify-content:space-between;}
+    .brand {display:flex; align-items:center; gap:14px}
+    .brand img{height:44px; width:44px; object-fit:contain; border-radius:10px; background:rgba(255,255,255,0.03)}
+    .brand .name{font-weight:800;letter-spacing:1px;color:var(--gold); font-size:18px}
+    nav {display:flex; gap:18px; align-items:center}
+    nav a{color:var(--text-light); font-weight:600; padding:8px 10px;border-radius:8px; transition:all 180ms ease}
+    nav a:hover{background:rgba(255,255,255,0.03)}
+    .cta-ghost{border:1px solid rgba(255,255,255,0.06); padding:8px 14px; border-radius:10px; font-weight:700}
+    .cta-primary{background:linear-gradient(90deg,var(--gold), #ffd86b); color:#071218; padding:10px 18px; border-radius:12px; font-weight:800; box-shadow: 0 8px 30px rgba(254,207,47,0.12)}
+
+/* ---------- Mobile Navigation ---------- */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 2000;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .mobile-menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-light);
+      position: absolute;
+      left: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-btn span:nth-child(1) {
+      top: 12px;
+    }
+    
+    .mobile-menu-btn span:nth-child(2) {
+      top: 19px;
+    }
+    
+    .mobile-menu-btn span:nth-child(3) {
+      top: 26px;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 19px;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 19px;
+    }
+    
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background: var(--bg);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 80px 30px 30px;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-left: 1px solid rgba(255,255,255,0.05);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav a {
+      display: block;
+      padding: 12px 16px;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .mobile-nav a:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .mobile-nav .cta-primary {
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+/* ---------- HERO (asymmetrical, layered) ---------- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 480px;
+      gap:48px;
+      align-items:center;
+      padding:84px 28px;
+      margin-top:18px;
+      position:relative;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(254,207,47,0.06) 0%, transparent 18%),
+        radial-gradient(ellipse at 80% 90%, rgba(0,107,63,0.06) 0%, transparent 20%),
+        linear-gradient(180deg, rgba(10,18,14,0.25), rgba(5,8,10,0.6));
+      z-index:0;
+      border-radius:18px;
+      pointer-events:none;
+      transform: translateZ(0);
+    }
+    .hero-left, .hero-right{position:relative; z-index:1;}
+    .hero-left h1{
+      font-size:48px;
+      line-height:1.02;
+      margin:0 0 12px 0;
+      letter-spacing:-1px;
+      color:var(--text-light);
+      text-shadow: 0 6px 30px rgba(0,0,0,0.5);
+    }
+    .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(254,207,47,0.12); color:var(--gold); font-weight:700;margin-bottom:16px}
+    .hero-left p.lead{color:var(--muted); font-size:18px; margin-bottom:20px; max-width:68ch}
+    .hero-ctas{display:flex; gap:14px; align-items:center; margin-top:8px}
+
+    .hero-right{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      transform: perspective(900px) translateZ(0);
+    }
+    .device{
+      width:420px;
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      padding:18px;
+      box-shadow: 0 30px 60px rgba(2,6,8,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      transform-origin:center;
+      transition: transform 600ms cubic-bezier(.2,.9,.26,1), box-shadow 300ms;
+    }
+    .device:hover{ transform: translateY(-12px) rotate(-2deg); box-shadow: 0 50px 90px rgba(2,6,8,0.7); }
+    .device .screen{
+      height:380px; border-radius:14px; overflow:hidden; background: linear-gradient(180deg,#06151b 0%, #0b2320 100%);
+      display:flex; flex-direction:column; gap:10px; padding:18px; color:var(--text-light);
+    }
+    .device .screen .mock-top{display:flex; justify-content:space-between; align-items:center}
+    .badge {background: rgba(0,0,0,0.25); padding:6px 10px; border-radius:10px; font-weight:700; color:var(--gold)}
+    .mock-graphic{flex:1; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:22px; color:var(--muted)}
+    .mock-stats{display:flex; gap:10px; justify-content:space-between; color:var(--muted); font-size:13px}
+
+/* ---------- FEATURES (staggered cards, highlight) ---------- */
+    .section { padding:64px 28px; margin-top:28px; border-radius:18px;}
+    .features { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:28px; align-items:stretch; }
+    .feature-list{ display:flex; flex-direction:column; gap:16px;}
+    .feature{
+      display:flex; gap:14px; align-items:flex-start; background:var(--card); padding:18px; border-radius:12px; transition:transform 300ms, box-shadow 300ms; }
+    .feature:hover{ transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,0.6)}
+    .feature .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(180deg,var(--gold), #ffd86b); color:#071218;}
+
+/* ---------- PROCESS (timeline) ---------- */
+    .process-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:18px;}
+    .step{ background:var(--glass); padding:18px; border-radius:12px; text-align:center; border:1px solid rgba(255,255,255,0.02)}
+
+/* ---------- PRICING / PRODUCTS (cards with accent) ---------- */
+    .products{ display:flex; gap:18px; margin-top:20px;}
+    .product{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px; flex:1; border:1px solid rgba(255,255,255,0.02); transition: transform 300ms}
+    .product:hover{ transform:translateY(-6px); box-shadow: 0 26px 70px rgba(0,0,0,0.6) }
+
+/* ---------- TESTIMONIALS (layered cards) ---------- */
+    .testimonials{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:18px; }
+    .tcard{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.03)}
+
+/* ---------- NEWS / FOOTER ---------- */
+    .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    footer{ margin-top:40px; padding:36px 28px; border-radius:16px; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.24)); display:flex; justify-content:space-between; align-items:center; gap:20px;}
+
+/* ---------- CONTACT SECTION ---------- */
+    #contact > div {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 26px;
+      align-items: start;
+    }
+    
+    #contact aside {
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+/* ---------- UTILITIES ---------- */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.03); font-weight:700; color:var(--gold)}
+    .ghost{border:1px solid rgba(255,255,255,0.03); padding:10px 14px; border-radius:10px}
+    .small{font-size:13px;color:var(--muted)}
+
+/* ---------- Responsive ---------- */
+    @media (max-width:1100px){
+      .hero{ grid-template-columns: 1fr; padding:56px 18px }
+      .features{ grid-template-columns: 1fr }
+      .testimonials{ grid-template-columns: 1fr; }
+      .process-grid{ grid-template-columns: repeat(2,1fr)}
+      .hero-right{ order:-1; margin-bottom:20px; display:flex; justify-content:center }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .nav-inner{padding:12px}
+      .brand .name{font-size:15px}
+      
+      .device{width:320px}
+      .hero-left h1{font-size:30px}
+      
+      .products {
+        flex-direction: column;
+      }
+      
+      /* CONTACT SECTION FIX */
+      #contact > div {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: unset;
+        gap: 28px;
+      }
+      
+      #contact > div > div,
+      #contact > div > aside {
+        width: 100%;
+      }
+      
+      /* NEWS GRID FIX */
+      .news-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      /* FOOTER FIX */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width:480px){
+      .hero-left h1{font-size:26px}
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* CONTACT FORM INPUTS */
+      #applyForm input {
+        padding: 14px 12px;
+        font-size: 16px;
+      }
+      
+      #applyForm button {
+        padding: 14px;
+      }
+      
+      /* CONTACT INFO GRID */
+      #contact dl {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .section {
+        padding: 48px 18px;
+      }
+    }
+
+/* ---------- Animations (scroll-reveal + subtle motion) ---------- */
+    .reveal{opacity:0; transform:translateY(28px); transition: all 800ms cubic-bezier(.2,.9,.26,1);}
+    .reveal.visible{opacity:1; transform:translateY(0)}
+    .fade-in{opacity:0; transition: opacity 900ms ease; transform:none}
+    .fade-in.visible{opacity:1}
+    .floaty{transition: transform 900ms cubic-bezier(.2,.9,.26,1)}
+    .floaty.slow{ animation: bob 6s ease-in-out infinite; }
+    @keyframes bob{ 0%{ transform: translateY(0)} 50%{ transform: translateY(-8px)} 100%{ transform: translateY(0)} }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+    .bounce {
+      animation: bounce 1.5s infinite;
+    }
+    .cta-primary:hover {
+      animation: none;
+      transform: translateY(-2px);
+    }
+
+/* small helpers for accessibility */
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+</style>
+</head>
+<body>
+
+ <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="logo.png" alt="Dreamland logo" />
+        <div>
+          <div class="name">DREAMLAND</div>
+          <div class="small muted">Micro Lending Limited</div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#process">How it works</a>
+        <a href="#testimonials">Clients</a>
+        <a href="#contact" class="cta-ghost">Contact</a>
+        <a href="#apply" class="cta-primary" style="margin-left:8px">Apply Now</a>
+      </nav>
+      
+      <!-- Mobile Menu Button - Hidden on desktop -->
+      <button class="mobile-menu-btn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation - Hidden by default -->
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#process">How it works</a>
+      <a href="#testimonials">Clients</a>
+      <a href="#contact">Contact</a>
+      <a href="#apply" class="cta-primary">Apply Now</a>
+    </nav>
+  </header>
+
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="kicker pill">Trusted • Fast • Inclusive</div>
+        <h1 id="hero-title">Microcredit reimagined for small businesses & ambitious people</h1>
+        <p class="lead muted">Dreamland provides affordable, transparent micro-loans with flexible repayments, quick digital approvals, and tailored support so entrepreneurs in Ghana and beyond can scale confidently.</p>
+
+        <div class="hero-ctas">
+          <a href="#apply" class="cta-primary bounce">Apply Now</a>
+          <a href="#features" class="cta-ghost" aria-label="View services">Our Services</a>
+        </div>
+
+    
+      </div>
+
+      <div class="hero-right reveal floaty slow" id="hero-media">
+        <div class="device" role="img" aria-label="App preview">
+          <div class="screen">
+            <div class="mock-top">
+              <div class="badge">DL</div>
+              <div class="small muted">Secure • Instant</div>
+            </div>
+            <div class="mock-graphic center">
+              <div>
+                <div style="font-size:22px;font-weight:800;color:var(--gold)">₵ 12,500</div>
+                <div class="small muted">Active Loan</div>
+              </div>
+            </div>
+            <div class="mock-stats">
+              <div><div style="font-weight:800">1,250+</div><div class="small muted">Loans</div></div>
+              <div><div style="font-weight:800">98%</div><div class="small muted">Approval</div></div>
+              <div><div style="font-weight:800">24h</div><div class="small muted">Disbursal</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section reveal" aria-labelledby="features-title">
+      <div style="display:flex; align-items:flex-start; gap:28px; flex-wrap:wrap;">
+        <div style="flex:1 1 520px;">
+          <h3 id="features-title">Features built for your growth</h3>
+          <p class="muted">Everything you need to access short-term capital, manage repayments, and track progress — without the red tape.</p>
+
+          <div class="feature-list" style="margin-top:18px;">
+            <div class="feature">
+              <div class="icon">₵</div>
+              <div>
+                <div style="font-weight:800">Micro Loans</div>
+                <div class="small muted">Small amounts, flexible terms, fast approval.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="icon">⚡</div>
+              <div>
+                <div style="font-weight:800">Instant Decisions</div>
+                <div class="small muted">Automated credit checks speed up approvals.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="icon">🔁</div>
+              <div>
+                <div style="font-weight:800">Flexible Repayments</div>
+                <div class="small muted">Plans tailored to seasonal income and cashflow.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="icon">🤝</div>
+              <div>
+                <div style="font-weight:800">Community Support</div>
+                <div class="small muted">Financial coaching & growth resources for borrowers.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:0 1 360px;">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+              <div><div class="small muted">Get a quick quote</div><div style="font-weight:800;font-size:20px">Estimate loan</div></div>
+              <div class="pill">Fast</div>
+            </div>
+
+            <form id="quickCalc" class="small" onsubmit="return calcQuote(event)">
+              <label class="sr-only" for="amt">Amount</label>
+              <input id="amt" type="number" min="100" value="2000" style="width:100%;padding:10px;border-radius:10px;border:none;background:rgba(0,0,0,0.2);color:var(--text-light);margin-bottom:10px" />
+              <label class="sr-only" for="term">Term</label>
+              <select id="term" style="width:100%;padding:10px;border-radius:10px;border:none;background:rgba(0,0,0,0.2);color:var(--text-light);margin-bottom:12px">
+                <option value="30">30 days</option>
+                <option value="60">60 days</option>
+                <option value="90">90 days</option>
+              </select>
+              <button class="cta-primary">See Estimate</button>
+              <div id="quote" class="small muted" style="margin-top:10px; display:none"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section reveal" aria-labelledby="process-title">
+      <h3 id="process-title">How it works</h3>
+      <p class="muted">Simple steps from application to disbursal — built to get capital into hands quickly and responsibly.</p>
+
+      <div class="process-grid">
+        <div class="step"><div class="pill">01</div><h4 style="margin-top:10px">Apply online</h4><p class="small muted">Fill a short form and upload basic documents.</p></div>
+        <div class="step"><div class="pill">02</div><h4 style="margin-top:10px">Fast approval</h4><p class="small muted">Automated checks + quick human review.</p></div>
+        <div class="step"><div class="pill">03</div><h4 style="margin-top:10px">Receive funds</h4><p class="small muted">Disbursal within 24 hours for approved loans.</p></div>
+        <div class="step"><div class="pill">04</div><h4 style="margin-top:10px">Grow & repeat</h4><p class="small muted">Build credit and access larger amounts over time.</p></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS / PACKAGES -->
+    <section id="products" class="section reveal" aria-labelledby="products-title">
+      <h3 id="products-title">Loan Packages</h3>
+      <p class="muted">Transparent pricing, no hidden fees — choose a plan that fits your needs.</p>
+
+      <div class="products">
+        <div class="product">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Starter</div><div class="small muted">Best for individuals</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵500 - ₵3,000</div>
+          <div class="small muted" style="margin-top:10px">Term: 30-60 days • Rate: 7% flat</div>
+          <div style="margin-top:14px"><button class="cta-primary">Apply Starter</button></div>
+        </div>
+
+        <div class="product">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Growth</div><div class="small muted">Small businesses</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵3,000 - ₵20,000</div>
+          <div class="small muted" style="margin-top:10px">Term: 30-180 days • Rate: 6% flat</div>
+          <div style="margin-top:14px"><button class="cta-primary">Apply Growth</button></div>
+        </div>
+
+        <div class="product">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Enterprise</div><div class="small muted">Larger ventures</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵20,000+</div>
+          <div class="small muted" style="margin-top:10px">Tailored terms • Dedicated support</div>
+          <div style="margin-top:14px"><button class="cta-primary">Contact Sales</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section reveal" aria-labelledby="testimonials-title">
+      <h3 id="testimonials-title">Trusted by entrepreneurs</h3>
+      <p class="muted">Stories from borrowers who used Dreamland to grow their businesses.</p>
+
+      <div class="testimonials">
+        <div class="tcard">
+          <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px">
+            <img src="https://i.pravatar.cc/60?img=32" alt="" style="width:48px;height:48px;border-radius:999px">
+            <div><strong>Akua T.</strong><div class="small muted">Market trader</div></div>
+          </div>
+          <p class="small muted">"I got a quick loan to buy stock before the holiday rush. Sales doubled — Dreamland made it easy."</p>
+        </div>
+
+        <div class="tcard">
+          <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px">
+            <img src="https://i.pravatar.cc/60?img=44" alt="" style="width:48px;height:48px;border-radius:999px">
+            <div><strong>Kofi A.</strong><div class="small muted">Carpenter</div></div>
+          </div>
+          <p class="small muted">"Transparent terms and helpful coaching — they guided me to manage repayments and grow revenue."</p>
+        </div>
+
+        <div class="tcard">
+          <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px">
+            <img src="https://i.pravatar.cc/60?img=12" alt="" style="width:48px;height:48px;border-radius:999px">
+            <div><strong>Linda M.</strong><div class="small muted">Salon owner</div></div>
+          </div>
+          <p class="small muted">"Fast approval and funds when I needed them most. The app is simple and reliable."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS -->
+    <section id="news" class="section reveal" aria-labelledby="news-title">
+      <h3 id="news-title">Latest updates</h3>
+      <div class="news-grid">
+        <article style="padding:16px;border-radius:12px;background:var(--card)"><strong>Dreamland launches new Growth loan</strong><p class="small muted">More capital and lower rates for returning customers.</p></article>
+        <article style="padding:16px;border-radius:12px;background:var(--card)"><strong>Financial coaching sessions</strong><p class="small muted">Free online workshops on budgeting & scaling your business.</p></article>
+        <article style="padding:16px;border-radius:12px;background:var(--card)"><strong>Community grant program</strong><p class="small muted">Partnering with local NGOs to support women entrepreneurs.</p></article>
+      </div>
+    </section>
+
+    <!-- CONTACT / APPLY FORM -->
+    <section id="contact" class="section reveal" aria-labelledby="contact-title">
+      <div style="display:grid; grid-template-columns: 1fr 420px; gap:26px; align-items:start;">
+        <div>
+          <h3 id="contact-title">Get started</h3>
+          <p class="muted">Apply online in minutes — or contact our team for custom plans and enterprise lending.</p>
+
+          <dl style="display:grid; grid-template-columns: repeat(2,1fr); gap:8px; margin-top:12px">
+            <div><strong>Phone</strong><div class="small muted">+233 123 456 789</div></div>
+            <div><strong>Email</strong><div class="small muted">info@dreamlandmicro.com</div></div>
+            <div><strong>Office</strong><div class="small muted">Accra, Ghana</div></div>
+            <div><strong>Hours</strong><div class="small muted">Mon–Fri, 9am–5pm</div></div>
+          </dl>
+
+          <div style="margin-top:18px">
+            <a href="#apply" class="cta-primary">Apply Now</a>
+            <a href="#contact" class="ghost" style="margin-left:12px;padding:10px 14px;border-radius:10px">Request callback</a>
+          </div>
+        </div>
+
+        <aside style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.02)">
+          <h4 style="margin-bottom:8px">Apply — quick form</h4>
+          <form id="applyForm" onsubmit="return fakeApply(event)">
+            <label class="sr-only" for="name">Full name</label>
+            <input id="name" required placeholder="Full name" style="width:100%;padding:12px;border-radius:10px;border:none;background:rgba(0,0,0,0.2);color:var(--text-light);margin-bottom:10px" />
+            <label class="sr-only" for="phone">Phone</label>
+            <input id="phone" required placeholder="Phone" style="width:100%;padding:12px;border-radius:10px;border:none;background:rgba(0,0,0,0.2);color:var(--text-light);margin-bottom:10px" />
+            <label class="sr-only" for="amount">Amount</label>
+            <input id="amount" type="number" required placeholder="Amount (₵)" style="width:100%;padding:12px;border-radius:10px;border:none;background:rgba(0,0,0,0.2);color:var(--text-light);margin-bottom:10px" />
+            <button class="cta-primary" style="width:100%;margin-top:6px">Start application</button>
+            <p id="applyMsg" class="small muted" style="margin-top:10px; display:none"></p>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="reveal">
+      <div>
+        <div style="display:flex; gap:12px; align-items:center">
+          <img src="logo.png" alt="Dreamland logo" style="width:44px;height:44px;object-fit:contain">
+          <div>
+            <div style="font-weight:800">Dreamland Micro Lending</div>
+            <div class="small muted">Empowering Dreams • © 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:18px; align-items:center;">
+        <div class="small muted">Privacy • Terms • Cookies</div>
+        <div style="display:flex; gap:10px;">
+          <a class="pill" href="#">Twitter</a>
+          <a class="pill" href="#">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- SCRIPT: Parallax, Scroll Reveals, small interactions -->
+  <script>
+     // Mobile menu toggle functionality
+    (function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const overlay = document.querySelector('.mobile-nav-overlay');
+      
+      function toggleMenu() {
+        menuBtn.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+      }
+      
+      menuBtn.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking on links
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', toggleMenu);
+      });
+    })();
+
+    // Parallax: subtle background motion for hero layers
+    (function(){
+      const hero = document.querySelector('.hero');
+      window.addEventListener('scroll', () => {
+        const sc = window.scrollY;
+        // move hero media up slightly as you scroll
+        const media = document.getElementById('hero-media');
+        if(media) media.style.transform = 'translateY(' + Math.min(0, sc * -0.05) + 'px)';
+        // background parallax via pseudo-element: change transform on root
+        hero.style.setProperty('--hero-offset', (sc * 0.15) + 'px');
+      });
+    })();
+
+    // IntersectionObserver for reveal elements
+    (function(){
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.15});
+
+      document.querySelectorAll('.reveal, .fade-in, .hero-right').forEach(el => io.observe(el));
+    })();
+
+    // Quick calculator (simple demo)
+    function calcQuote(e){
+      e.preventDefault();
+      const amt = Number(document.getElementById('amt').value) || 0;
+      const term = Number(document.getElementById('term').value) || 30;
+      // sample flat rate calc
+      const rate = 0.07; // 7% flat as sample
+      const fee = Math.round(amt * rate);
+      const total = amt + fee;
+      const quote = document.getElementById('quote');
+      quote.style.display = 'block';
+      quote.innerHTML = `Estimated fee: ₵${fee.toLocaleString()} • Total repay: ₵${total.toLocaleString()} • Term: ${term} days`;
+      return false;
+    }
+
+    // Fake apply form (demo behavior)
+    function fakeApply(e){
+      e.preventDefault();
+      const msg = document.getElementById('applyMsg');
+      msg.style.display = 'block';
+      msg.innerText = 'Submitting…';
+      setTimeout(() => {
+        msg.innerText = 'Thanks! Your application has been received. Our team will call you within 24 hours.';
+        document.getElementById('applyForm').reset();
+      }, 900);
+      return false;
+    }
+
+    // small enhancement: shrink header on scroll
+    (function(){
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        header.style.backdropFilter = window.scrollY > 20 ? 'blur(14px)' : 'blur(8px)';
+        header.style.padding = window.scrollY > 20 ? '8px 0' : '';
+      });
+    })();
+    
+    // Add bounce animation to CTA buttons on hover
+    (function() {
+      const ctaButtons = document.querySelectorAll('.cta-primary');
+      ctaButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          button.classList.add('bounce');
+        });
+        button.addEventListener('animationend', () => {
+          button.classList.remove('bounce');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
