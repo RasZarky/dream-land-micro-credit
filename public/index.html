@@ -324,7 +324,7 @@
         flex-direction: column;
       }
       
-      /* CONTACT SECTION FIX */
+      /* CONTACT SECTION FIX - Updated for better mobile layout */
       #contact > div {
         display: flex;
         flex-direction: column;
@@ -335,6 +335,11 @@
       #contact > div > div,
       #contact > div > aside {
         width: 100%;
+      }
+      
+      #contact dl {
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
       
       /* NEWS GRID FIX */
@@ -369,12 +374,6 @@
       
       #applyForm button {
         padding: 14px;
-      }
-      
-      /* CONTACT INFO GRID */
-      #contact dl {
-        grid-template-columns: 1fr;
-        gap: 12px;
       }
       
       .section {
@@ -426,9 +425,9 @@
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#process">How it works</a>
-        <a href="#testimonials">Clients</a>
+        <!-- <a href="#testimonials">Clients</a> -->
         <a href="#contact" class="cta-ghost">Contact</a>
-        <a href="#apply" class="cta-primary" style="margin-left:8px">Apply Now</a>
+        <a href="#contact" class="cta-primary" style="margin-left:8px">Apply Now</a>
       </nav>
       
       <!-- Mobile Menu Button - Hidden on desktop -->
@@ -445,9 +444,9 @@
       <a href="#about">About</a>
       <a href="#features">Features</a>
       <a href="#process">How it works</a>
-      <a href="#testimonials">Clients</a>
+      <!-- <a href="#testimonials">Clients</a> -->
       <a href="#contact">Contact</a>
-      <a href="#apply" class="cta-primary">Apply Now</a>
+      <a href="#contact" class="cta-primary">Apply Now</a>
     </nav>
   </header>
 
@@ -462,7 +461,7 @@
         <p class="lead muted">Dreamland provides affordable, transparent micro-loans with flexible repayments, quick digital approvals, and tailored support so entrepreneurs in Ghana and beyond can scale confidently.</p>
 
         <div class="hero-ctas">
-          <a href="#apply" class="cta-primary bounce">Apply Now</a>
+          <a href="#contact" class="cta-primary bounce">Apply Now</a>
           <a href="#features" class="cta-ghost" aria-label="View services">Our Services</a>
         </div>
 
@@ -483,9 +482,9 @@
               </div>
             </div>
             <div class="mock-stats">
-              <div><div style="font-weight:800">1,250+</div><div class="small muted">Loans</div></div>
+              <div><div style="font-weight:800">50+</div><div class="small muted">Loans</div></div>
               <div><div style="font-weight:800">98%</div><div class="small muted">Approval</div></div>
-              <div><div style="font-weight:800">24h</div><div class="small muted">Disbursal</div></div>
+              <div><div style="font-weight:800">72h</div><div class="small muted">Disbursal</div></div>
             </div>
           </div>
         </div>
@@ -564,10 +563,10 @@
       <p class="muted">Simple steps from application to disbursal — built to get capital into hands quickly and responsibly.</p>
 
       <div class="process-grid">
-        <div class="step"><div class="pill">01</div><h4 style="margin-top:10px">Apply online</h4><p class="small muted">Fill a short form and upload basic documents.</p></div>
+        <div class="step"><div class="pill">01</div><h4 style="margin-top:10px">Loan application</h4><p class="small muted">Fill a short form and upload basic documents.</p></div>
         <div class="step"><div class="pill">02</div><h4 style="margin-top:10px">Fast approval</h4><p class="small muted">Automated checks + quick human review.</p></div>
         <div class="step"><div class="pill">03</div><h4 style="margin-top:10px">Receive funds</h4><p class="small muted">Disbursal within 24 hours for approved loans.</p></div>
-        <div class="step"><div class="pill">04</div><h4 style="margin-top:10px">Grow & repeat</h4><p class="small muted">Build credit and access larger amounts over time.</p></div>
+        <div class="step"><div class="pill">04</div><h4 style="margin-top:10px">Collateral free</h4><p class="small muted">Build credit and access larger amounts over time.</p></div>
       </div>
     </section>
 
@@ -578,30 +577,30 @@
 
       <div class="products">
         <div class="product">
-          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Starter</div><div class="small muted">Best for individuals</div></div>
-          <div style="font-size:28px;font-weight:900;margin-top:12px">₵500 - ₵3,000</div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Micro loan</div><div class="small muted">Best for individuals</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵1000 - ₵10,000</div>
           <div class="small muted" style="margin-top:10px">Term: 30-60 days • Rate: 7% flat</div>
-          <div style="margin-top:14px"><button class="cta-primary">Apply Starter</button></div>
+          <div style="margin-top:14px"><a href="#contact" class="cta-primary bounce">Apply micro</a></div>
         </div>
 
         <div class="product">
-          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Growth</div><div class="small muted">Small businesses</div></div>
-          <div style="font-size:28px;font-weight:900;margin-top:12px">₵3,000 - ₵20,000</div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Individual business</div><div class="small muted">Small businesses</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵5,000 - ₵20,000</div>
           <div class="small muted" style="margin-top:10px">Term: 30-180 days • Rate: 6% flat</div>
-          <div style="margin-top:14px"><button class="cta-primary">Apply Growth</button></div>
+          <div style="margin-top:14px"><a href="#contact" class="cta-primary bounce">Apply individual business</a></div>
         </div>
 
         <div class="product">
-          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Enterprise</div><div class="small muted">Larger ventures</div></div>
-          <div style="font-size:28px;font-weight:900;margin-top:12px">₵20,000+</div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800">Emergency Loans</div><div class="small muted">Larger ventures</div></div>
+          <div style="font-size:28px;font-weight:900;margin-top:12px">₵5,000 - ₵20,000</div>
           <div class="small muted" style="margin-top:10px">Tailored terms • Dedicated support</div>
-          <div style="margin-top:14px"><button class="cta-primary">Contact Sales</button></div>
+          <div style="margin-top:14px"><a href="#contact" class="cta-primary bounce">Apply emergency</a></div>
         </div>
       </div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials" class="section reveal" aria-labelledby="testimonials-title">
+    <!-- <section id="testimonials" class="section reveal" aria-labelledby="testimonials-title">
       <h3 id="testimonials-title">Trusted by entrepreneurs</h3>
       <p class="muted">Stories from borrowers who used Dreamland to grow their businesses.</p>
 
@@ -630,7 +629,7 @@
           <p class="small muted">"Fast approval and funds when I needed them most. The app is simple and reliable."</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- LATEST NEWS -->
     <section id="news" class="section reveal" aria-labelledby="news-title">
@@ -650,14 +649,13 @@
           <p class="muted">Apply online in minutes — or contact our team for custom plans and enterprise lending.</p>
 
           <dl style="display:grid; grid-template-columns: repeat(2,1fr); gap:8px; margin-top:12px">
-            <div><strong>Phone</strong><div class="small muted">+233 123 456 789</div></div>
+            <div><strong>Phone</strong><div class="small muted">+233 20 767 4076 / +233 24 158 5892</div></div>
             <div><strong>Email</strong><div class="small muted">info@dreamlandmicro.com</div></div>
-            <div><strong>Office</strong><div class="small muted">Accra, Ghana</div></div>
+            <div><strong>Office</strong><div class="small muted">Sunyani, Ghana</div></div>
             <div><strong>Hours</strong><div class="small muted">Mon–Fri, 9am–5pm</div></div>
           </dl>
 
           <div style="margin-top:18px">
-            <a href="#apply" class="cta-primary">Apply Now</a>
             <a href="#contact" class="ghost" style="margin-left:12px;padding:10px 14px;border-radius:10px">Request callback</a>
           </div>
         </div>
@@ -802,5 +800,26 @@
       });
     })();
   </script>
+
+  <style>
+    /* Additional responsive styles for contact section */
+    @media (max-width: 768px) {
+      #contact > div {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+      }
+      
+      #contact > div > div,
+      #contact > div > aside {
+        width: 100% !important;
+      }
+      
+      #contact dl {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+    }
+  </style>
 </body>
 </html>
