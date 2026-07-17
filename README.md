@@ -1,5 +1,7 @@
 # Dreamland Micro Lending
 
+![Dreamland logo](public/logo.png)
+
 Dreamland Micro Lending is a simple, polished landing page for a micro-lending and small-business finance brand in Ghana. The site is built as a static web page and hosted with Firebase.
 
 ## Project Overview
