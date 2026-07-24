@@ -518,14 +518,17 @@
 
     .member-image {
       position: relative;
-      height: 200px;
+      width: 100%;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
+      background: rgba(0, 0, 0, 0.1);
     }
 
     .member-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       transition: transform 400ms ease;
     }
 
@@ -571,7 +574,7 @@
     }
 
     .team-member:hover .member-image img {
-      transform: scale(1.05);
+      transform: scale(1.02); /* Minimal scale to avoid excessive cropping on hover */
     }
 
     .member-info {
@@ -653,15 +656,17 @@
     @media (max-width: 768px) {
       .team-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
+        max-width: 440px;
+        margin: 28px auto 0;
       }
 
       .member-image {
-        height: 220px;
+        aspect-ratio: 1 / 1; /* Squarer ratio on mobile often helps with portrait cropping */
       }
 
       .member-info {
-        padding: 16px;
+        padding: 20px;
       }
     }
 
