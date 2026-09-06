@@ -9,7 +9,7 @@ build step required.
 ## Pages
 
 - `public/index.html` — home page (hero, features, process, loan products, team, FAQ preview, loan calculator).
-- `public/about.html` — mission, story, stats, and leadership team
+- `public/about.html` — mission, story, stats, and leadership team.
 - `public/loans.html` — detailed loan products, comparison table, eligibility, and how to apply
 - `public/apply.html` — functional loan application form (validates, then opens a pre-filled email to the Dreamland inbox)
 - `public/contact.html` — contact details, office map, and a callback request form
